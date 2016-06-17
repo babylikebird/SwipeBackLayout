@@ -5,17 +5,18 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':library')
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 7
-        targetSdkVersion 22
+        targetSdkVersion 23
     }
 
     signingConfigs {
