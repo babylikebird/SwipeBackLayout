@@ -11,6 +11,9 @@ Demo Apk
 ===
 [GooglePlay](https://play.google.com/store/apps/details?id=me.imid.swipebacklayout.demo)
 
+Download
+===
+[aar](https://github.com/babylikebird/SwipeBackLayout/blob/master/art/swipebacklayout.aar)
 
 Usage
 ===
