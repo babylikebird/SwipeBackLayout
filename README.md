@@ -12,10 +12,6 @@ Demo Apk
 [GooglePlay](https://play.google.com/store/apps/details?id=me.imid.swipebacklayout.demo)
 
 
-Requirement
-===
-The latest android-support-v4.jar should be referenced by your project.
-
 Usage
 ===
 1. Add SwipeBackLayout as a dependency to your existing project.
@@ -24,7 +20,29 @@ Usage
 	* You will have access to the `getSwipeBackLayout()` method so you can customize the `SwipeBackLayout`. 
 3. Make window translucent by adding `<item name="android:windowIsTranslucent">true</item>` to your theme.
 
-Simple Example
+修改内容
+===
+1.在使用systembarhint的时候，不生肖了。
+  解决方法：在SwipeBackLayout的attachToActivity中修改如下
+  ```
+  //        ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
+        ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView().findViewById(Window.ID_ANDROID_CONTENT);
+  ```      
+2.在布局文件设置的背景怎么没效果了？
+  解决办法：在SwipeBackLayout的attachToActivity中有如下：
+  ```
+ TypedArray a = activity.getTheme().obtainStyledAttributes(new int[]{android.R.attr.windowBackground
+});
+ int background = a.getResourceId(0, 0);
+a.recycle();
+decorChild.setBackgroundResource(background);
+```
+把我们的背景给替换了，把这段注释掉。注意（注释掉之后，因为windowIsTranslucent设置为tue,那么就会透明了，需要在布局文件中设置背景）
+
+3.滑动的时候怎么显示桌面？
+  原因：在4.4系统以下最底层的的Activity的windowIsTranslucent设置为tue，会有此问题，如A->B，如果A设置windowIsTranslucent为true，那么就会出现此问题。5.0以上没问题。
+  
+Simple Example  
 ===
 ```
 public class DemoActivity extends SwipeBackActivity implements View.OnClickListener {
@@ -70,13 +88,6 @@ public class DemoActivity extends SwipeBackActivity implements View.OnClickListe
         });
     }
 ...
-```
-
-Download
-===
-Download via Jcenter:
-```
-compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 ```
 
 
